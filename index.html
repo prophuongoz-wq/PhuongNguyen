@@ -3,6 +3,53 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function() {
+        try {
+          var _rawFetch = window.fetch ? window.fetch.bind(window) : undefined;
+          var _currentFetch = _rawFetch;
+
+          var fetchDescriptor = {
+            get: function() {
+              return _currentFetch;
+            },
+            set: function(val) {
+              _currentFetch = typeof val === 'function' ? val : _rawFetch;
+            },
+            configurable: true,
+            enumerable: true
+          };
+
+          // Patch window
+          try {
+            Object.defineProperty(window, 'fetch', fetchDescriptor);
+          } catch (e1) {}
+
+          // Patch Window.prototype
+          if (typeof Window !== 'undefined' && Window.prototype) {
+            try {
+              Object.defineProperty(Window.prototype, 'fetch', fetchDescriptor);
+            } catch (e2) {}
+          }
+
+          // Patch globalThis
+          if (typeof globalThis !== 'undefined' && globalThis !== window) {
+            try {
+              Object.defineProperty(globalThis, 'fetch', fetchDescriptor);
+            } catch (e3) {}
+          }
+
+          // Patch window.__proto__
+          if (window.__proto__) {
+            try {
+              Object.defineProperty(window.__proto__, 'fetch', fetchDescriptor);
+            } catch (e4) {}
+          }
+        } catch (err) {
+          // Fallback safe
+        }
+      })();
+    </script>
     <title>Trường Thịnh Invest | Cho Thuê Tòa Nhà Văn Phòng & Kho Bãi Chính Chủ</title>
     <meta name="description" content="CÔNG TY ĐẦU TƯ TRƯỜNG THỊNH (Trường Thịnh Invest) - Cho thuê tòa nhà văn phòng 140B Nguyễn Văn Trỗi Phú Nhuận và tổng kho bãi 301 Quốc lộ 1A Tam Bình Thủ Đức chính chủ." />
     <meta property="og:title" content="Trường Thịnh Invest | Cho Thuê Văn Phòng & Kho Bãi Chính Chủ" />
