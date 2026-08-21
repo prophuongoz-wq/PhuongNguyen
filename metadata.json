@@ -1,0 +1,6 @@
+{
+  "name": "Trường Thịnh Invest - Cho Thuê Văn Phòng & Kho Bãi Chính Chủ",
+  "description": "Nền tảng giới thiệu tòa nhà văn phòng Trường Thịnh Building Phú Nhuận và Tổng kho bãi Sóng Thần Thủ Đức, bảng giá, thông số kỹ thuật, bản đồ vị trí và đặt lịch xem.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
